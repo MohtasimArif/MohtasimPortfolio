@@ -548,3 +548,144 @@ body {
 .profile-img:hover {
     transform: scale(1.1);
 }
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header {
+        padding: 20px 5%;
+    }
+
+    .navbar a {
+        margin-left: 20px;
+    }
+
+    .home {
+        padding: 0 5%;
+    }
+
+    .home-content h1 {
+        font-size: 40px;
+    }
+
+    .home-content h3 {
+        font-size: 24px;
+    }
+
+    .about {
+        flex-direction: column;
+        padding: 50px 5%;
+    }
+
+    .about-img img {
+        width: 200px;
+    }
+
+    .skills-container {
+        flex-direction: column;
+    }
+
+    .portfolio-container {
+        flex-direction: column;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .header {
+        padding: 10px 5%;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .home-content h1 {
+        font-size: 32px;
+    }
+
+    .home-content h3 {
+        font-size: 20px;
+    }
+
+    .home-sci a {
+        font-size: 18px;
+    }
+
+    .about {
+        flex-direction: column;
+        padding: 30px 5%;
+    }
+
+    .about-img img {
+        width: 180px;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .portfolio-container {
+        flex-direction: column;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px;
+    }
+
+    .contact-form button {
+        padding: 10px 24px;
+    }
+
+    .footer {
+        font-size: 14px;
+    }
+}
+
+/* For Mobile Devices */
+@media (max-width: 480px) {
+    .home-content h1 {
+        font-size: 28px;
+    }
+
+    .home-content h3 {
+        font-size: 18px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .about-img img {
+        width: 150px;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 14px;
+    }
+
+    .contact-form button {
+        font-size: 14px;
+    }
+}
