@@ -55,11 +55,11 @@ body {
     align-items: center;
     padding: 0 10%;
 }
+
 .home-img{ 
     width: 500px;
     border-radius: 50px;
     margin-left: auto;
-
 }
 
 .home-content {
@@ -76,6 +76,7 @@ body {
     width: 0;
     animation: typing 2s steps(12, end) forwards, blink 0.8s infinite;
 }
+
 @keyframes typing {
     from {
         width: 0;
@@ -202,13 +203,15 @@ body {
     padding: 100px 10%;
     color: white;
 }
+
 .skill h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #bec4c9;
 }
+
 .skills-container {
-    display: gri;
+    display: grid;
     flex-direction: column;
     align-items: center;
     padding: 50px;
@@ -255,12 +258,16 @@ body {
     font-weight: bold;
     flex: 1;
 }
+
 .skills .sub-title {
     display: inline-block;
     position: relative;
     font-size: 2rem;
     font-weight: bold;
     color: #fff;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .skills .sub-title span {
@@ -282,7 +289,6 @@ body {
 .skills .sub-title:hover::after {
     width: 100%;
 }
-
 
 .progress-bar {
     position: relative;
@@ -316,7 +322,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-   
+    justify-content: center;
 }
 
 .radial-bar {
@@ -352,10 +358,40 @@ body {
     width: 100%;
 }
 
-
 /* Contact Section */
 .contact {
     padding: 100px 10%;
+}
+
+.contact h1 {
+    display: inline-block;
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.contact h1 span {
+    color: #f39c12; /* Highlight color */
+}
+
+.contact h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #f39c12, #ff5733);
+    transition: width 0.4s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.contact h1:hover::after {
+    width: 100%;
 }
 
 /* Contact Container */
@@ -430,6 +466,7 @@ body {
 .social-links a:hover {
     transform: scale(1.2);
 }
+
 /* Contact Form Styles */
 .contact-form {
     display: flex;
@@ -485,7 +522,6 @@ body {
     font-weight: bold;
 }
 
-
 /* Footer */
 .footer {
     text-align: center;
@@ -499,50 +535,7 @@ body {
     text-decoration: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        padding: 20px 5%;
-    }
-
-    .navbar a {
-        margin-left: 20px;
-    }
-
-    .home {
-        padding: 0 5%;
-    }
-
-    .home-content h1 {
-        font-size: 40px;
-    }
-
-    .home-content h3 {
-        font-size: 24px;
-    }
-
-    .about {
-        flex-direction: column;
-        padding: 50px 5%;
-    }
-
-    .about-img img {
-        width: 200px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-    }
-
-    .portfolio-container {
-        flex-direction: column;
-    }
-
-    .contact-container {
-        flex-direction: column;
-    }
-}
-
+/* Expertise Section */
 .expertise {
     padding: 100px 10%;
 }
@@ -554,6 +547,9 @@ body {
     font-size: 2rem;
     font-weight: bold;
     color: #fff;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .expertise .sub-title span {
@@ -588,6 +584,7 @@ body {
 /* Expertise Card Styling */
 .expertise-card {
     flex: 1;
+    min-width: 280px;
     max-width: 300px;
     background: #257bb5;
     padding: 25px;
@@ -596,6 +593,7 @@ body {
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 /* Hover Effects */
@@ -631,6 +629,7 @@ body {
     opacity: 0.9;
 }
 
+/* Software Section */
 .software-icons {
     display: flex;
     flex-wrap: wrap;
@@ -648,6 +647,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease-in-out;
     cursor: pointer;
+    margin-bottom: 15px;
 }
 
 .software img {
@@ -664,15 +664,15 @@ body {
     color: #fff;
     transition: color 0.3s ease;
 }
+
 .software h2 {
     text-align: center;
-    width: 100%; /* Ensures full width */
-    display: block; /* Ensures it takes up full width */
-    margin: 0 auto; /* Centers it horizontally */
-    color: #fff; /* Adjust color for better visibility */
-    font-size: 24px; /* Adjust size as needed */
+    width: 100%; 
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 24px;
 }
-
 
 /* Hover effect with gradient animation */
 .software:hover {
@@ -688,13 +688,16 @@ body {
 .software:hover p {
     color: #222;
 }
+
 .profile-img {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     height: auto;
     object-fit: contain;
     transition: transform 0.3s ease-in-out;
     animation: float 3s infinite alternate ease-in-out;
 }
+
 .software-title {
     font-size: 2.5rem;
     font-weight: bold;
@@ -702,6 +705,8 @@ body {
     position: relative;
     display: inline-block;
     color: #fff;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 .software-title span {
@@ -724,7 +729,6 @@ body {
     left: 0;
 }
 
-
 /* Floating Animation */
 @keyframes float {
     0% {
@@ -739,306 +743,6 @@ body {
 .profile-img:hover {
     transform: scale(1.1);
 }
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .header {
-        padding: 20px 5%;
-    }
-
-    .navbar a {
-        margin-left: 20px;
-    }
-
-    .home {
-        padding: 0 5%;
-    }
-
-    .home-content h1 {
-        font-size: 40px;
-    }
-
-    .home-content h3 {
-        font-size: 24px;
-    }
-
-    .about {
-        flex-direction: column;
-        padding: 50px 5%;
-    }
-
-    .about-img img {
-        width: 200px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-    }
-
-    .portfolio-container {
-        flex-direction: column;
-    }
-
-    .contact-container {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Header adjustments */
-    .header {
-        padding: 10px 5%;
-    }
-
-    .navbar a {
-        font-size: 16px;
-        margin-left: 10px;
-    }
-
-    .home-content h1 {
-        font-size: 32px;
-    }
-
-    .home-content h3 {
-        font-size: 20px;
-    }
-
-    .home-sci a {
-        font-size: 18px;
-    }
-
-    .about {
-        flex-direction: column;
-        padding: 30px 5%;
-    }
-
-    .about-img img {
-        width: 180px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .portfolio-container {
-        flex-direction: column;
-    }
-
-    .contact-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 10px;
-    }
-
-    .contact-form button {
-        padding: 10px 24px;
-    }
-
-    .footer {
-        font-size: 14px;
-    }
-}
-
-/* For Mobile Devices */
-@media (max-width: 480px) {
-    .home-content h1 {
-        font-size: 28px;
-    }
-
-    .home-content h3 {
-        font-size: 18px;
-    }
-
-    .navbar a {
-        font-size: 14px;
-        margin-left: 10px;
-    }
-
-    .about-img img {
-        width: 150px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .contact-container {
-        flex-direction: column;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 14px;
-    }
-
-    .contact-form button {
-        font-size: 14px;
-    }
-}
-
-
-/* Bounce Animation */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-
-
-
-  
-/* Responsive Design */
-@media (max-width: 1200px) {
-    /* Laptops */
-    .home-content h1 {
-        font-size: 48px;
-    }
-
-    .home-content h3 {
-        font-size: 28px;
-    }
-
-    .about-img img {
-        width: 400px;
-    }
-}
-
-@media (max-width: 992px) {
-    /* Tablets (iPad) */
-    .header {
-        padding: 20px 5%;
-    }
-
-    .navbar a {
-        margin-left: 20px;
-    }
-
-    .home {
-        padding: 0 5%;
-    }
-
-    .home-content h1 {
-        font-size: 40px;
-    }
-
-    .home-content h3 {
-        font-size: 24px;
-    }
-
-    .about {
-        flex-direction: column;
-        padding: 50px 5%;
-    }
-
-    .about-img img {
-        width: 300px;
-    }
-
-    .skills-container {
-        flex-direction: column;
-    }
-
-    .portfolio-container {
-        flex-direction: column;
-    }
-
-    .contact-container {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Small Tablets and Large Phones */
-    .home-content h1 {
-        font-size: 36px;
-    }
-
-    .home-content h3 {
-        font-size: 20px;
-    }
-
-    .about-img img {
-        width: 250px;
-    }
-
-    .skills-container {
-        gap: 30px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 10px;
-    }
-
-    .contact-form button {
-        padding: 10px 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Mobile Devices */
-    .home-content h1 {
-        font-size: 28px;
-    }
-
-    .home-content h3 {
-        font-size: 18px;
-    }
-
-    .navbar a {
-        font-size: 14px;
-        margin-left: 10px;
-    }
-
-    .about-img img {
-        width: 200px;
-    }
-
-    .skills-container {
-        gap: 20px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 14px;
-    }
-
-    .contact-form button {
-        font-size: 14px;
-    }
-}
-.contact h1 {
-    display: inline-block;
-    position: relative;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-.contact h1 span {
-    color: #f39c12; /* Highlight color */
-}
-
-.contact h1::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -5px;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(90deg, #f39c12, #ff5733);
-    transition: width 0.4s ease-in-out;
-    transform: translateX(-50%);
-}
-
-.contact h1:hover::after {
-    width: 100%;
-}
 
 /* Particles.js Container */
 #particles-js {
@@ -1048,6 +752,8 @@ body {
     background: #081b29; /* Dark background color */
     z-index: -1; /* Place it behind other content */
 }
+
+/* Chatbot Icon */
 #chatbot-icon {
     position: fixed;
     bottom: 20px;
@@ -1064,10 +770,303 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
 }
 
 #chatbot-icon:hover {
     background: #0056b3;
     transform: scale(1.1);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Navigation Menu */
+.mobile-nav-toggle {
+    display: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    /* Laptops */
+    .home-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .home-content h3 {
+        font-size: 28px;
+    }
+
+    .about-img img {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .home-img {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Tablets (iPad) */
+    .header {
+        padding: 15px 5%;
+    }
+
+    .navbar a {
+        margin-left: 20px;
+        font-size: 16px;
+    }
+
+    .home {
+        padding: 0 5%;
+        flex-direction: column-reverse;
+        justify-content: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .home-img {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .home-content {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .home-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .home-content h3 {
+        font-size: 22px;
+    }
+
+    .home-sci {
+        justify-content: center;
+    }
+
+    .about {
+        flex-direction: column;
+        padding: 50px 5%;
+        text-align: center;
+    }
+
+    .about-img img {
+        margin: 0 auto 30px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .expertise-card {
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Small Tablets and Large Phones */
+    .header {
+        padding: 10px 5%;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 60px);
+        background: rgba(8, 27, 41, 0.95);
+        padding: 40px;
+        transition: 0.3s;
+        flex-direction: column;
+    }
+    
+    .navbar.active {
+        left: 0;
+    }
+    
+    .navbar a {
+        display: block;
+        margin: 0 0 20px 0;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .home-content h1 {
+        font-size: 1.8rem;
+        white-space: normal;
+    }
+
+    .home-content h3 {
+        font-size: 20px;
+    }
+    
+    .home-img {
+        max-width: 300px;
+    }
+
+    .about-img img {
+        max-width: 250px;
+    }
+    
+    .about-text h2 {
+        font-size: 28px;
+    }
+    
+    .about-text h4 {
+        font-size: 20px;
+    }
+
+    .skills .sub-title,
+    .expertise .sub-title,
+    .contact h1 {
+        font-size: 1.8rem;
+    }
+    
+    .skills-container {
+        padding: 30px 20px;
+    }
+    
+    .expertise-card {
+        min-width: 100%;
+    }
+    
+    .software {
+        width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Small Phones */
+    .home-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .home-content h3 {
+        font-size: 18px;
+    }
+    
+    .home-img {
+        max-width: 250px;
+    }
+    
+    .btn-box {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .about-text h2 {
+        font-size: 24px;
+    }
+    
+    .about-text h4 {
+        font-size: 18px;
+    }
+    
+    .about-text p {
+        font-size: 14px;
+    }
+    
+    .skill i {
+        font-size: 30px;
+    }
+    
+    .skill h3 {
+        font-size: 16px;
+    }
+    
+    .contact-container {
+        padding: 20px 15px;
+    }
+    
+    .contact-info p {
+        font-size: 1rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .social-links a {
+        font-size: 1.5rem;
+        margin: 0 5px;
+    }
+    
+    #chatbot-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 375px) {
+    /* Extra Small Phones */
+    .logo {
+        font-size: 18px;
+    }
+    
+    .home-content h1 {
+        font-size: 1.3rem;
+    }
+    
+    .home-content h3 {
+        font-size: 16px;
+    }
+    
+    .home-img {
+        max-width: 200px;
+    }
+    
+    .about-img img {
+        max-width: 200px;
+    }
+    
+    .skills .sub-title,
+    .expertise .sub-title,
+    .contact h1 {
+        font-size: 1.5rem;
+    }
+    
+    .skill {
+        padding: 8px;
+        gap: 10px;
+    }
+    
+    .software {
+        width: 90px;
+        padding: 10px;
+    }
+    
+    .software img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .software p {
+        font-size: 12px;
+    }
 }
