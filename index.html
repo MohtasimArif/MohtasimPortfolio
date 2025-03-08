@@ -89,7 +89,7 @@
 <div id="particles-js"></div>
     <!-- Header -->
     <header class="header">
-        <a href="#" class="logo">Portfolio</a>
+        <a href="javascript:void(0)" class="logo">Portfolio</a>
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
@@ -100,6 +100,39 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
+  <!-- Chatbot Icon -->
+  <div id="chatbot-icon" onclick="toggleChat()">
+    <i class="bx bx-message-dots"></i>
+</div>
+
+    <!-- Chatbox -->
+     <!-- Chat icon -->
+     <div id="chat-icon-container" class="pulse" onclick="toggleChatbox()">
+        <svg id="chat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/>
+        </svg>
+    </div>
+
+    <!-- Chatbox -->
+    <div id="chatbox">
+        <div id="chat-header">
+            <div id="chat-header-left">
+                <svg id="chat-header-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/>
+                </svg>
+                <span>Chatbot</span>
+            </div>
+            <button onclick="closeChatbox()">✖</button>
+        </div>
+        <div id="chat-body">
+            <div id="messages"></div>
+        </div>
+        <div id="chat-footer">
+            <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
 
 <!-- Home Section -->
 <section class="home" id="home">
@@ -388,6 +421,196 @@ document.getElementById("contactForm").addEventListener("submit", function (even
                 this.classList.add('active');
             });
         });
+    </script>
+     <script>
+        // Store chat state
+        let chatState = {
+            isOpen: false,
+            isTyping: false
+        };
+
+        // Toggle chatbox visibility with animation
+        function toggleChatbox() {
+            const chatbox = document.getElementById('chatbox');
+            const chatIcon = document.getElementById('chat-icon-container');
+            
+            if (!chatState.isOpen) {
+                // Open chatbox
+                chatbox.classList.remove('slide-out');
+                chatbox.classList.add('slide-in');
+                chatIcon.classList.remove('pulse');
+                chatState.isOpen = true;
+                
+                // If this is the first open, show welcome message
+                if (document.getElementById('messages').children.length === 0) {
+                    setTimeout(() => {
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            appendMessage("Hello! How can I help you today?", "bot");
+                        }, 1500);
+                    }, 500);
+                }
+            } else {
+                // Close chatbox
+                closeChatbox();
+            }
+        }
+
+        // Close chatbox with animation
+        function closeChatbox() {
+            const chatbox = document.getElementById('chatbox');
+            const chatIcon = document.getElementById('chat-icon-container');
+            
+            chatbox.classList.remove('slide-in');
+            chatbox.classList.add('slide-out');
+            chatIcon.classList.add('pulse');
+            
+            // After animation completes, hide the chatbox
+            setTimeout(() => {
+                chatbox.style.display = 'none';
+                chatState.isOpen = false;
+            }, 300);
+        }
+
+        // Show typing indicator animation
+        function showTypingIndicator() {
+            if (chatState.isTyping) return;
+            
+            const messagesContainer = document.getElementById('messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('typing-indicator');
+            typingIndicator.id = 'typing-indicator';
+            
+            // Add the three dots
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('span');
+                typingIndicator.appendChild(dot);
+            }
+            
+            messagesContainer.appendChild(typingIndicator);
+            chatState.isTyping = true;
+            
+            // Auto scroll to show typing indicator
+            const chatBody = document.getElementById('chat-body');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Hide typing indicator
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+                chatState.isTyping = false;
+            }
+        }
+
+        // Send message function
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+            
+            if (message !== '') {
+                // Add user message
+                appendMessage(message, 'user');
+                
+                // Clear input
+                userInput.value = '';
+                
+                // Process the message (simulate bot response)
+                processBotResponse(message);
+            }
+        }
+
+        // Handle Enter key press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Append message to chat
+        function appendMessage(text, sender) {
+            const messagesContainer = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender + '-message');
+            messageElement.textContent = text;
+            
+            // Add boximate entrance animation for message
+            messageElement.style.opacity = '0';
+            messageElement.style.transform = 'translateY(10px)';
+            
+            messagesContainer.appendChild(messageElement);
+            
+            // Force reflow to enable animation
+            void messageElement.offsetWidth;
+            
+            // Apply animation
+            messageElement.style.transition = 'all 0.3s ease';
+            messageElement.style.opacity = '1';
+            messageElement.style.transform = 'translateY(0)';
+            
+            // Auto scroll to bottom
+            const chatBody = document.getElementById('chat-body');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Process bot response with typing indicator
+        function processBotResponse(userMessage) {
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate typing delay (longer for longer responses)
+            const lowerCaseMessage = userMessage.toLowerCase();
+            let responseTime = 1000 + Math.random() * 1000; // Between 1-2 seconds
+            
+            setTimeout(() => {
+                // Hide typing indicator
+                hideTypingIndicator();
+                
+                let botResponse;
+                
+                // Simple response logic (can be expanded)
+                if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                    botResponse = "Hello there! How can I assist you today?";
+                } else if (lowerCaseMessage.includes('help')) {
+                    botResponse = "I'm here to help! What do you need assistance with?";
+                } else if (lowerCaseMessage.includes('bye') || lowerCaseMessage.includes('goodbye')) {
+                    botResponse = "Goodbye! Feel free to come back if you have more questions.";
+                } else if (lowerCaseMessage.includes('thank')) {
+                    botResponse = "You're welcome! Is there anything else I can help with?";
+                } else {
+                    botResponse = "I'm still learning. Can you ask me something else or rephrase your question?";
+                }
+                
+                appendMessage(botResponse, 'bot');
+            }, responseTime);
+        }
+
+        // Add chatbot periodic animation when idle
+        function startIdleAnimation() {
+            const chatIcon = document.getElementById('chat-icon-container');
+            
+            if (!chatState.isOpen) {
+                chatIcon.classList.add('pulse');
+            }
+            
+            // Randomly trigger pulse animation every 10-20 seconds while closed
+            setInterval(() => {
+                if (!chatState.isOpen) {
+                    chatIcon.classList.remove('pulse');
+                    void chatIcon.offsetWidth; // Force reflow
+                    chatIcon.classList.add('pulse');
+                }
+            }, 10000 + Math.random() * 10000);
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            startIdleAnimation();
+        };
     </script>
 
     <script src="main.js"></script>
