@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohtasim Arif - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Particles.js Library -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 </head>
 <body>
+<!-- Particles.js Container -->
+<div id="particles-js"></div>
     <!-- Header -->
     <header class="header">
         <a href="#" class="logo">Portfolio</a>
@@ -21,6 +28,25 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
+  <!-- Chatbot Icon -->
+  <div id="chatbot-icon" onclick="toggleChat()">
+    <i class="bx bx-message-dots"></i>
+</div>
+
+<!-- Chatbox -->
+<div id="chatbox">
+    <div id="chat-header">
+        <span>Chatbot</span>
+        <button onclick="toggleChat()">✖</button>
+    </div>
+    <div id="chat-body">
+        <div id="messages"></div>
+    </div>
+    <div id="chat-footer">
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+</div>
 
 <!-- Home Section -->
 <section class="home" id="home">
@@ -40,6 +66,7 @@
             <a href="https://www.instagram.com/they_call_me_murtasim_xd/profilecard/?igsh=ZGE2Zzk5dmJiZTZ5" target="_blank"><i class='bx bxl-instagram'></i></a>
             <a href="https://www.linkedin.com/in/murtasim-arif-791572252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class='bx bxl-linkedin'></i></a>
             <a href="https://www.facebook.com/share/15abCVxFPG/?mibextid=qi2Omg" target="_blank"><i class='bx bxl-facebook'></i></a>
+
         </div>
         <a href="#about" class="btn-box">More About Me</a>
     </div>
@@ -71,6 +98,8 @@
             </p>
             
             <a href="#skills" class="btn-box">More About Me</a>
+            <a href="Resume Mohtasim.pdf" download="Mohtasim_Resume.pdf" class="btn-box">Download Resume</a>
+
         </div>
     </section>
 
@@ -161,39 +190,10 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <h1 class="sub-title">Latest <span>Projects</span></h1>
-        <div class="portfolio-container">
-            <div class="project">
-                <img src="app.png" alt="Traffic App">
-                <div class="layer">
-                    <h3>Traffic App</h3>
-                    <p>UI/UX Design and Development</p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="Edufree - Learning Management System (Community)-1.png" alt="KUST University">
-                <div class="layer">
-                    <h3>KUST University</h3>
-                    <p>UI/UX Design and Development</p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="Clothes Store UI (Community).png" alt="Online Shopping App">
-                <div class="layer">
-                    <h3>Online Shopping App</h3>
-                    <p>UI/UX Design and Development</p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
      <!-- software tools -->
     <section>
-        <h2>Software & Tools I Use</h2>
+        <h1 class="software-title">software I <span>Use</span></h1>
         <div class="software-icons">
             <div class="software">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
@@ -251,12 +251,13 @@
                 </div>
                 
             </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Subject">
-                <textarea placeholder="Your Message" required></textarea>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <input type="text" id="subject" placeholder="Subject">
+                <textarea id="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
+                <p id="formMessage"></p> <!-- Success/Error Message -->
             </form>
         </div>
     </section>
@@ -266,7 +267,55 @@
         <p>Developed by Mohtasim Arif &copy; 2024</p>
         <a href="#home" class="top"><i class='bx bx-up-arrow-alt'></i></a>
     </footer>
+    </div>
+    <script>
+        // Initialize Email.js (Make sure to replace with your own Email.js keys)
+document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("8vb0cw-srIf5ndYQc"); // Replace with your Email.js User ID
+});
+
+document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Get input values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const formMessage = document.getElementById("formMessage");
+
+    // Validate Inputs
+    if (name === "" || email === "" || message === "") {
+        formMessage.style.color = "red";
+        formMessage.innerText = "Please fill in all required fields.";
+        return;
+    }
+
+    // Email.js Service Details
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+    };
+
+    // Send Email
+    emailjs.send("service_alnr0an", "template_rf299cd", templateParams)
+        .then((response) => {
+            formMessage.style.color = "green";
+            formMessage.innerText = "Message sent successfully! 🎉";
+            document.getElementById("contactForm").reset();
+        })
+        .catch((error) => {
+            formMessage.style.color = "red";
+            formMessage.innerText = "Failed to send message. Try again later.";
+        });
+});
+
+    </script>
 
     <script src="main.js"></script>
+    
+
 </body>
 </html>
